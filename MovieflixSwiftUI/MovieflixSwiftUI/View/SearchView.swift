@@ -29,6 +29,7 @@ struct SearchView: View {
                     searchedMovies = try await Network.shared.search(for: newValue)
                 }
             }
+            .autocorrectionDisabled()
         }
     }
 }
