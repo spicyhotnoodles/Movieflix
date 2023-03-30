@@ -204,6 +204,7 @@ enum OriginalLanguage: String, Codable {
     case sr = "sr"
     case sn = "sn"
     case sd = "sd"
+    case sh = "sh"
     case si = "si"
     case sk = "sk"
     case sl = "sl"
@@ -240,10 +241,9 @@ enum OriginalLanguage: String, Codable {
     case cy = "cy"
     case wo = "wo"
     case xh = "xh"
+    case xx = "xx"
     case yi = "yi"
     case yo = "yo"
     case za = "za"
     case zu = "zu"
-    
-    
 }
