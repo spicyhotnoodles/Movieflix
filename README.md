@@ -32,9 +32,8 @@ Right now the app is partially implemented in UIKit because I did not have time 
 In reality no. The initial idea was way more "original"; since I'm a really lazy person, and I do not want to bother into searching on the web or in `<<insert famous streaming service's name>>` catalogue, I wanted to make an app which can suggest you random movies (available on the most popular platforms) to watch, like shuffle, maybe based on your personal tastes. Since I had really little time to do that, I couldn't make it, but I'll try in the future to do so.
 ## Screenshots
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="Media/0.png" alt="Logo" width="250" height="550">
-    <img src="Media/5.png" alt="Logo" width="250" height="550">
+    <img src="Media/0.png" alt="Screen1" width="250" height="550">
+    <img src="Media/5.png" alt="Screen2" width="250" height="550">
   </a>
 <div/>
 
