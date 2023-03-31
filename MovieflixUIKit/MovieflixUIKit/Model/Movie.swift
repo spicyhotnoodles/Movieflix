@@ -247,4 +247,4 @@ enum OriginalLanguage: String, Codable {
     case zu = "zu"
 }
 
-var nowPlayingMovies: [Movie] = []
+//var nowPlayingMovies: [Movie] = []
