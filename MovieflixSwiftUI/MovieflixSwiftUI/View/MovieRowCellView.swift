@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MovieRowCellView: View {
     @Environment(\.colorScheme) var colorScheme
@@ -13,14 +14,8 @@ struct MovieRowCellView: View {
     var body: some View {
         VStack {
             HStack(spacing: 15) {
-                AsyncImage(
-                    url: URL(string: "https://image.tmdb.org/t/p/original/" + (movie.posterPath ?? "Unknown")),
-                    content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(15)
-                    },
-                    placeholder: {
+                KFImage(URL(string: "https://image.tmdb.org/t/p/original/" + (movie.posterPath ?? "")))
+                    .placeholder { progress in
                         Image("poster-placeholder")
                             .resizable()
                             .scaledToFit()
@@ -32,7 +27,9 @@ struct MovieRowCellView: View {
                                 }
                             }
                     }
-                )
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(15)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(movie.title ?? "Unknown")
                         .font(.system(size: 24))

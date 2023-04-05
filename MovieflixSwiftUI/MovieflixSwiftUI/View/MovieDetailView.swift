@@ -6,20 +6,15 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MovieDetailView: View {
     let movie: Movie
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 20) {
-                AsyncImage(
-                    url: URL(string: "https://image.tmdb.org/t/p/original/" + (movie.posterPath ?? "")),
-                    content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(15)
-                    },
-                    placeholder: {
+                KFImage(URL(string: "https://image.tmdb.org/t/p/original/" + (movie.posterPath ?? "")))
+                    .placeholder { progress in
                         Image("poster-placeholder")
                             .resizable()
                             .scaledToFit()
@@ -27,10 +22,12 @@ struct MovieDetailView: View {
                             .overlay {
                                 ProgressView()
                                     .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
-
+                                
                             }
                     }
-                )
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(15)
                 Text(movie.title ?? "Unknown")
                     .font(.largeTitle)
                     .bold()
