@@ -12,6 +12,7 @@ struct MovieflixSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .accentColor(Color(UIColor.systemRed))
         }
     }
 }

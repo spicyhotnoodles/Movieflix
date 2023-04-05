@@ -10,6 +10,7 @@
 		9A05B4FD29DD89BF0094FE6D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9A05B4FC29DD89BF0094FE6D /* Kingfisher */; };
 		9A05B50629DD8FEF0094FE6D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A05B50829DD8FEF0094FE6D /* Localizable.strings */; };
 		9A05B50B29DDA4630094FE6D /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A05B50A29DDA4630094FE6D /* Credits.swift */; };
+		9A05B50D29DDB3430094FE6D /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A05B50C29DDB3430094FE6D /* Providers.swift */; };
 		9A33B6C329D0BA17007B849D /* MovieflixSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A33B6C229D0BA17007B849D /* MovieflixSwiftUIApp.swift */; };
 		9A33B6C529D0BA17007B849D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A33B6C429D0BA17007B849D /* ContentView.swift */; };
 		9A33B6C729D0BA18007B849D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A33B6C629D0BA18007B849D /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		9A05B50729DD8FEF0094FE6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9A05B50929DD90100094FE6D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9A05B50A29DDA4630094FE6D /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
+		9A05B50C29DDB3430094FE6D /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
 		9A33B6BF29D0BA17007B849D /* MovieflixSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieflixSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A33B6C229D0BA17007B849D /* MovieflixSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieflixSwiftUIApp.swift; sourceTree = "<group>"; };
 		9A33B6C429D0BA17007B849D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				9A33B6F729D0BAE8007B849D /* Movie.swift */,
 				9A05B50A29DDA4630094FE6D /* Credits.swift */,
+				9A05B50C29DDB3430094FE6D /* Providers.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A05B50D29DDB3430094FE6D /* Providers.swift in Sources */,
 				9A33B6FF29D0C363007B849D /* MovieDetailView.swift in Sources */,
 				9A33B6F829D0BAE8007B849D /* Movie.swift in Sources */,
 				9A33B6C529D0BA17007B849D /* ContentView.swift in Sources */,
