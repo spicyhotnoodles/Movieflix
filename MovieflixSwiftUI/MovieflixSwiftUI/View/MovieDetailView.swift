@@ -9,8 +9,10 @@ import SwiftUI
 import Kingfisher
 
 struct MovieDetailView: View {
+    let defaults = UserDefaults.standard
     @State var providers: Providers?
     @State var credits: Credits?
+    var searchHistory: Binding<[Movie]?>?
     let movie: Movie
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -154,12 +156,25 @@ struct MovieDetailView: View {
                 providers = try await Network.shared.getProviders(for: String(movie.id ?? 0000000))
                 credits = try await Network.shared.getCredits(for: String(movie.id ?? 0000000))
             }
+            if !((searchHistory?.wrappedValue?.contains(where: { $0.id == movie.id })) == nil) {
+                if (searchHistory?.wrappedValue?.count ?? 0) > 6 {
+                    searchHistory?.wrappedValue?.remove(at: 0)
+                }
+                searchHistory?.wrappedValue?.append(movie)
+//                defaults.set(searchHistory?.wrappedValue, forKey: "Saved History")
+            }
         }
     }
 }
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView(movie: Movie(adult: false, backdropPath: "", genreIDS: [], id: 0, originalLanguage: OriginalLanguage.en, originalTitle: "", overview: "", popularity: 2.0, posterPath: "", releaseDate: "2023", title: "Movie Title", video: false, voteAverage: 3.0, voteCount: 99))
+        MovieDetailView(searchHistory: .constant([]), movie: Movie(adult: false, backdropPath: "", genreIDS: [], id: 0, originalLanguage: OriginalLanguage.en, originalTitle: "", overview: "", popularity: 2.0, posterPath: "", releaseDate: "2023", title: "Movie Title", video: false, voteAverage: 3.0, voteCount: 99))
+    }
+}
+
+extension MovieDetailView {
+    func addToHistory() {
+        
     }
 }

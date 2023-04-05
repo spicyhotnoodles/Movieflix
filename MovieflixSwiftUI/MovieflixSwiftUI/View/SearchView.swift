@@ -10,17 +10,29 @@ import SwiftUI
 struct SearchView: View {
     @State var text = ""
     @State var searchedMovies: Movies?
+    @State var searchHistory: [Movie]? = []
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
-                ForEach(searchedMovies?.results ?? []) { movie in
-                    NavigationLink<MovieRowCellView, MovieDetailView> {
-                        MovieDetailView(movie: movie)
-                    } label: {
-                        MovieRowCellView(movie: movie)
+                if (text.isEmpty) {
+                    ForEach(searchHistory?.reversed() ?? []) { movie in
+                        NavigationLink<MovieRowCellView, MovieDetailView> {
+                            MovieDetailView(searchHistory: $searchHistory, movie: movie)
+                        } label: {
+                            MovieRowCellView(movie: movie)
+                        }
                     }
+                    .buttonStyle(PlainButtonStyle())
+                } else {
+                    ForEach(searchedMovies?.results ?? []) { movie in
+                        NavigationLink<MovieRowCellView, MovieDetailView> {
+                            MovieDetailView(searchHistory: $searchHistory, movie: movie)
+                        } label: {
+                            MovieRowCellView(movie: movie)
+                        }
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .buttonStyle(PlainButtonStyle())
             }
             .searchable(text: $text, placement: .navigationBarDrawer(displayMode: .always))
             .navigationTitle(LocalizedStringKey("SearchView"))
@@ -30,6 +42,13 @@ struct SearchView: View {
                 }
             }
             .autocorrectionDisabled()
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(LocalizedStringKey("Clean")) {
+                        searchHistory?.removeAll()
+                    }
+                }
+            }
         }
     }
 }
