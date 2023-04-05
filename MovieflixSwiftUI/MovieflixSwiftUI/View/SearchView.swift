@@ -22,6 +22,9 @@ struct SearchView: View {
                             MovieRowCellView(movie: movie)
                         }
                     }
+//                    .onDelete(perform: { index in
+//                        searchHistory?.remove(atOffsets: index)
+//                    })
                     .buttonStyle(PlainButtonStyle())
                 } else {
                     ForEach(searchedMovies?.results ?? []) { movie in

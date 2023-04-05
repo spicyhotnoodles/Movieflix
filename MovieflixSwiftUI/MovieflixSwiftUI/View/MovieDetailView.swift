@@ -16,7 +16,7 @@ struct MovieDetailView: View {
     let movie: Movie
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 20) {
+            VStack(spacing: 35) {
                 KFImage(URL(string: "https://image.tmdb.org/t/p/original/" + (movie.posterPath ?? "")))
                     .placeholder { progress in
                         Image("poster-placeholder")
@@ -43,10 +43,10 @@ struct MovieDetailView: View {
                             .font(.footnote)
                             .fontWeight(.bold)
                             .foregroundColor(Color.secondary)
-                            .padding(.horizontal, 5)
                         Spacer()
                     }
                 }
+                .padding(.horizontal, 3)
                 // MARK: Cast Section
                 Section {
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -114,6 +114,7 @@ struct MovieDetailView: View {
                         Spacer()
                     }
                 }
+                .padding(.horizontal, 3)
                 // MARK: Watch Providers Section
                 Section {
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -142,7 +143,6 @@ struct MovieDetailView: View {
                                 )
                             }
                         }
-                        .padding(.horizontal, 3)
                     }
                 } header: {
                     if !(providers?.results?.it?.flatrate ?? []).isEmpty {
@@ -155,6 +155,7 @@ struct MovieDetailView: View {
                         }
                     }
                 }
+                .padding(.horizontal, 3)
             }
             .padding()
             .navigationBarTitleDisplayMode(.inline)
@@ -164,7 +165,7 @@ struct MovieDetailView: View {
                 providers = try await Network.shared.getProviders(for: String(movie.id ?? 0000000))
                 credits = try await Network.shared.getCredits(for: String(movie.id ?? 0000000))
             }
-            if !((searchHistory?.wrappedValue?.contains(where: { $0.id == movie.id })) == nil) {
+            if !((searchHistory?.wrappedValue?.contains(where: { $0.id == movie.id })) != nil && (searchHistory?.wrappedValue?.contains(where: { $0.id == movie.id }))!) {
                 if (searchHistory?.wrappedValue?.count ?? 0) > 6 {
                     searchHistory?.wrappedValue?.remove(at: 0)
                 }
