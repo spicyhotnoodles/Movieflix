@@ -80,13 +80,21 @@ struct MovieDetailView: View {
                                     )
                                     VStack(spacing: 8) {
                                         Text(`actor`.name ?? "Unknown")
-                                        Text("as")
-                                            .font(.caption)
+                                            .frame(width: 70)
+                                            .truncationMode(.tail)
+                                            .lineLimit(2)
+//                                        Text(LocalizedStringKey("IsCharacter"))
+//                                            .font(.caption)
+                                        Divider()
+                                            .frame(height: 1)
+                                            .overlay(Color(UIColor.systemGray))
                                         if `actor`.character != "" {
                                             Text(`actor`.character ?? "Unknown")
                                                 .frame(width: 90)
+                                                .frame(maxHeight: .infinity)
                                                 .truncationMode(.tail)
                                                 .lineLimit(2)
+                                                .padding(-15)
                                         } else {
                                             Text("Unknown")
                                                 .frame(maxHeight: .infinity)
