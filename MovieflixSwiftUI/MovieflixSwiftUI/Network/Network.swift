@@ -10,6 +10,8 @@ import SwiftUI
 
 class Network: NSObject, ObservableObject {
     
+    // API Key ef1d335d746553ee2fcd7f8c03cf8614
+    
     /// Create a single instance of the Network class
     static let shared = Network()
     
@@ -43,6 +45,22 @@ class Network: NSObject, ObservableObject {
         }
     }
     
+    func getProviders(for movieID: String) async throws -> Providers? {
+        var url = "https://api.themoviedb.org/3/movie/<<movie_id>>/watch/providers?api_key=ef1d335d746553ee2fcd7f8c03cf8614"
+        url = url.replacingOccurrences(of: "<<movie_id>>", with: movieID)
+        let urlComponent = URLComponents(string: url)
+        let request = buildRequest(component: urlComponent!)
+        let data = try await perform(request: request)
+        do {
+            let loaded = try JSONDecoder().decode(Providers.self, from: data)
+            return loaded
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+}
+
 extension LocalizedStringKey {
     var stringKey: String? {
         Mirror(reflecting: self).children.first(where: { $0.label == "key" })?.value as? String
