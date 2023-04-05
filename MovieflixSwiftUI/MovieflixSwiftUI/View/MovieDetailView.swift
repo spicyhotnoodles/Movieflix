@@ -10,6 +10,7 @@ import Kingfisher
 
 struct MovieDetailView: View {
     @State var providers: Providers?
+    @State var credits: Credits?
     let movie: Movie
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -44,6 +45,66 @@ struct MovieDetailView: View {
                         Spacer()
                     }
                 }
+                // MARK: Cast Section
+                Section {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ForEach(credits?.cast ?? []) { `actor` in
+                                VStack {
+                                    AsyncImage(
+                                        url: URL(string: "https://image.tmdb.org/t/p/original/" + (`actor`.profilePath ?? "")),
+                                        content: { image in
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 100, height: 100)
+                                                .clipShape(Circle())
+                                                .shadow(color: Color.secondary, radius: 2)
+                                        },
+                                        placeholder: {
+                                            Image("actor-placeholder")
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 100, height: 100)
+                                                .clipShape(Circle())
+                                                .shadow(color: Color.secondary, radius: 2)
+                                                .overlay {
+                                                    if (`actor`.profilePath != nil) {
+                                                        ProgressView()
+                                                            .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
+                                                    }
+                                                }
+                                        }
+                                    )
+                                    VStack(spacing: 8) {
+                                        Text(`actor`.name ?? "Unknown")
+                                        Text("as")
+                                            .font(.caption)
+                                        if `actor`.character != "" {
+                                            Text(`actor`.character ?? "Unknown")
+                                                .frame(width: 90)
+                                                .truncationMode(.tail)
+                                                .lineLimit(2)
+                                        } else {
+                                            Text("Unknown")
+                                                .frame(maxHeight: .infinity)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 3)
+                    }
+                } header: {
+                    HStack {
+                        Text("Cast")
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.secondary)
+                        Spacer()
+                    }
+                }
+                // MARK: Watch Providers Section
                 Section {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
@@ -90,7 +151,8 @@ struct MovieDetailView: View {
         }
         .onAppear {
             Task {
-                providers = try await Network.shared.getProviders(for: String(movie.id ?? 9999999))
+                providers = try await Network.shared.getProviders(for: String(movie.id ?? 0000000))
+                credits = try await Network.shared.getCredits(for: String(movie.id ?? 0000000))
             }
         }
     }

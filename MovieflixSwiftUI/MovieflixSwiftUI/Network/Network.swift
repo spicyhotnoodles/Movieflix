@@ -59,6 +59,20 @@ class Network: NSObject, ObservableObject {
         }
     }
     
+    func getCredits(for movieID: String) async throws -> Credits? {
+        var url = "https://api.themoviedb.org/3/movie/<<movie_id>>/credits?api_key=ef1d335d746553ee2fcd7f8c03cf8614"
+        url = url.replacingOccurrences(of: "<<movie_id>>", with: movieID)
+        let urlComponent = URLComponents(string: url)
+        let request = buildRequest(component: urlComponent!)
+        let data = try await perform(request: request)
+        do {
+            let loaded = try JSONDecoder().decode(Credits.self, from: data)
+            return loaded
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
 }
 
 extension LocalizedStringKey {
