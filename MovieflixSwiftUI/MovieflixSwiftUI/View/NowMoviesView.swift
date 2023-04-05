@@ -21,7 +21,7 @@ struct NowMoviesView: View {
                 }
                 .buttonStyle(.plain)
             }
-            .navigationTitle("In Theaters")
+            .navigationTitle(LocalizedStringKey("TheatersView"))
         }
         .onAppear {
             Task {

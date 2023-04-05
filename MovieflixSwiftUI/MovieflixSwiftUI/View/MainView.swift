@@ -12,11 +12,11 @@ struct MainView: View {
         TabView {
             NowMoviesView()
                 .tabItem {
-                    Label("In Theaters", systemImage: "ticket.fill")
+                    Label(LocalizedStringKey("TheatersView"), systemImage: "ticket.fill")
                 }
             SearchView()
                 .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
+                    Label(LocalizedStringKey("SearchView"), systemImage: "magnifyingglass")
                 }
         }
     }

@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  MovieflixSwiftUI
+
+  Created by Pietro Ciuci on 05/04/23.
+  
+*/
+
+"APILanguage" = "it";
+"TheatersView" = "Al Cinema";
+"SearchView" = "Cerca";
+"WatchProviders" = "Servizi Streaming";
+"Overview" = "Info";
