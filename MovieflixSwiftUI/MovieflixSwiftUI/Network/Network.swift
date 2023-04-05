@@ -43,6 +43,12 @@ class Network: NSObject, ObservableObject {
         }
     }
     
+extension LocalizedStringKey {
+    var stringKey: String? {
+        Mirror(reflecting: self).children.first(where: { $0.label == "key" })?.value as? String
+    }
+}
+
 extension String {
     static func localizedString(for key: String,
                                 locale: Locale = .current) -> String {
