@@ -23,7 +23,7 @@ struct SearchView: View {
                 .buttonStyle(PlainButtonStyle())
             }
             .searchable(text: $text, placement: .navigationBarDrawer(displayMode: .always))
-            .navigationTitle("Search")
+            .navigationTitle(LocalizedStringKey("SearchView"))
             .onChange(of: text) { newValue in
                 Task {
                     searchedMovies = try await Network.shared.search(for: newValue)
