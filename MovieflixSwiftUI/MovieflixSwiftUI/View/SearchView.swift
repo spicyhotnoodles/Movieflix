@@ -11,6 +11,7 @@ struct SearchView: View {
     @State var text = ""
     @State var searchedMovies: Movies?
     @State var searchHistory: [Movie]? = []
+    let defaults = UserDefaults.standard
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
@@ -37,6 +38,14 @@ struct SearchView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
             }
+            .onAppear {
+                if let savedHistory = defaults.object(forKey: "searchHistory") as? Data {
+                    let decoder = JSONDecoder()
+                    if let loadedHistory = try? decoder.decode([Movie].self, from: savedHistory) {
+                        searchHistory = loadedHistory
+                    }
+                }
+            }
             .searchable(text: $text, placement: .navigationBarDrawer(displayMode: .always))
             .navigationTitle(LocalizedStringKey("SearchView"))
             .onChange(of: text) { newValue in
@@ -49,6 +58,12 @@ struct SearchView: View {
                 ToolbarItem(placement: .primaryAction) {
                     Button(LocalizedStringKey("Clean")) {
                         searchHistory?.removeAll()
+                        do {
+                            let encodedData = try JSONEncoder().encode(searchHistory)
+                            defaults.set(encodedData, forKey: "searchHistory")
+                        } catch {
+                            print(error.localizedDescription)
+                        }
                     }
                 }
             }

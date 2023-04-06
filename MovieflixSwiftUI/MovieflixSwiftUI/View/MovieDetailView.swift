@@ -83,8 +83,6 @@ struct MovieDetailView: View {
                                             .frame(width: 70)
                                             .truncationMode(.tail)
                                             .lineLimit(2)
-//                                        Text(LocalizedStringKey("IsCharacter"))
-//                                            .font(.caption)
                                         Divider()
                                             .frame(height: 1)
                                             .overlay(Color(UIColor.systemGray))
@@ -170,7 +168,12 @@ struct MovieDetailView: View {
                     searchHistory?.wrappedValue?.remove(at: 0)
                 }
                 searchHistory?.wrappedValue?.append(movie)
-//                defaults.set(searchHistory?.wrappedValue, forKey: "Saved History")
+                do {
+                    let encodedData = try JSONEncoder().encode(searchHistory?.wrappedValue)
+                    defaults.set(encodedData, forKey: "searchHistory")
+                } catch {
+                    fatalError(error.localizedDescription)
+                }
             }
         }
     }
