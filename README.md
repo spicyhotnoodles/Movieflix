@@ -13,7 +13,7 @@
     <a href=""><strong>Explore the docs</strong></a>
     <br />
     <br />
-    <a href="https://github.com/spicyhotnoodles/Movieflix">View Demo</a>
+    <a href="#demo">View Demo</a>
     ·
     <a href="https://github.com/spicyhotnoodles/Movieflix">Report Bug</a>
     ·
@@ -35,6 +35,11 @@ In reality no. The initial idea was way more "original"; since I'm a really lazy
     <img src="Media/0.png" alt="Screen1" width="250" height="550">
     <img src="Media/5.png" alt="Screen2" width="250" height="550">
   </a>
-<div/>
+</div>
 
+## Demo
+<div id=demo align="center">
+  <img src="Media/Demo.gif" alt="Demo" style="width:250px;height:550px;">
+  </a>
+</div>
 
