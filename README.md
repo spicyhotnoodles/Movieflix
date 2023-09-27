@@ -10,14 +10,8 @@
   <p align="center">
     Explore and take a look at TMDB movies database
     <br />
-    <a href=""><strong>Explore the docs</strong></a>
-    <br />
     <br />
     <a href="#demo">View Demo</a>
-    ·
-    <a href="https://github.com/spicyhotnoodles/Movieflix">Report Bug</a>
-    ·
-    <a href="https://github.com/spicyhotnoodles/Movieflix">Request Feature</a>
   </p>
 </div>
 
